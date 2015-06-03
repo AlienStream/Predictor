@@ -68,11 +68,9 @@ func ExtractInfoFromYoutube(p models.Post) Info {
 	}
 
 	var track_rank float64
-	if p.Dislikes == 0 {
-		track_rank = 0
-	} else {
-		track_rank = (float64)(p.Likes / p.Dislikes)
-	}
+	s, _ := models.Source{}.FromId(p.Source_id)
+	track_rank = (float64) (p.Likes * s.Importance)
+	
 	track := models.Track{
 		Rank:      track_rank,
 		Title:     video.Snippet.Title,
