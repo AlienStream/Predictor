@@ -75,6 +75,7 @@ func ExtractInfoFromYoutube(p models.Post) Info {
 		Rank:      track_rank,
 		Title:     video.Snippet.Title,
 		Thumbnail: video.Snippet.Thumbnail.MaxRes.URL,
+		Created_at: p.Posted_at,
 	}
 
 	embeddable := models.Embeddable{
