@@ -1,7 +1,10 @@
 package predictor
 
 import (
+	"encoding/json"
 	models "github.com/AlienStream/Shared-Go/models"
+	"net/http"
+	"strings"
 )
 
 type SoundCloudoEmbed struct {
@@ -34,7 +37,7 @@ func SoundCloudoEmbedLookup(url string) SoundCloudoEmbed {
 }
 
 func ExtractInfoFromSoundCloud(p models.Post) Info {
-	var track_info := SoundCloudoEmbedLookup(p.Embed_url)
+	track_info := SoundCloudoEmbedLookup(p.Embed_url)
 
 	artist := models.Artist{
 		Name:      track_info.Author_Name,
