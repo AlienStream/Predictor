@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	models "github.com/AlienStream/Shared-Go/models"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -16,11 +17,11 @@ type SoundCloudoEmbed struct {
 }
 
 
-func SoundCloudoEmbedLookup(url string) SoundCloudoEmbed {
+func SoundCloudoEmbedLookup(uri string) SoundCloudoEmbed {
 	var oEmbed SoundCloudoEmbed
 	// setup the request
 	var base_url string = "http://soundcloud.com/oembed"
-	var params = []string{"format=json","url="+ url}
+	var params = []string{"format=json","url="+ url.QueryEscape(uri)}
 	var curl_url = base_url +"?"+ strings.Join(params, "&")
 
 	// get the data
