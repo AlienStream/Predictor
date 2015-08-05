@@ -9,15 +9,13 @@ import (
 func main() {
 	longinterval := time.NewTicker(time.Minute * 15).C;
 
-	go func() {
-            for {
-                select {
-                case <- longinterval:
-                    importLatestTracks()
-                    break
-              }
-            }
-        }()
+    for {
+        select {
+        case <- longinterval:
+            go importLatestTracks()
+            break
+      }
+    }
 }
 
 func importLatestTracks() {

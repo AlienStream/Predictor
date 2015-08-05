@@ -42,7 +42,7 @@ func IsYoutube(p models.Post) bool {
 func IsSoundcloud(p models.Post) bool {
 
 	if strings.Contains(p.Embed_url, "://soundcloud.com") {
-
+		return true
 	}
 
 	return false
