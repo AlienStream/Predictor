@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	longinterval := time.NewTicker(time.Minute * 15).C;
+	longinterval := time.NewTicker(time.Minute).C;
 
     for {
         select {
@@ -20,7 +20,7 @@ func main() {
 
 func importLatestTracks() {
 	posts := models.NewPosts()
-	for _, post := range posts {
+        for _, post := range posts {
 		predictor.ImportFromPost(post)
 	}
 

@@ -20,7 +20,7 @@ func SaveInfo(info Info, source models.Source) {
 			info.Channel.Save()
 		}
 		channel, _ := models.Channel{}.FromUrl(info.Channel.Url)
-
+		
 		info.Track.Channel_id = channel.Id
 		if info.Track.IsNew() {
 			info.Track.Insert()
@@ -36,6 +36,7 @@ func SaveInfo(info Info, source models.Source) {
 	} else {
 		embed, _ := models.Embeddable{}.FromUrl(info.Embed.Url)
 		track, _ := models.Track{}.FromId(embed.Track_id)
+		track.Rank = info.Track.Rank
 		models.CreateTrackSourcePivot(source, track)
 	}
 }

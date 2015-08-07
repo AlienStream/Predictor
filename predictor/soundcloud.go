@@ -13,7 +13,7 @@ type SoundCloudoEmbed struct {
 	Description string `json:"description"`
 	Thumbnail   string `json:"thumbnail_url"`
 	Author_Name string `json:"author_name"`
-	Author_Url  string `json:"url"`
+	Author_Url  string `json:"author_url"`
 }
 
 

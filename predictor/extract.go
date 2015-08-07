@@ -23,7 +23,7 @@ func extractInfo(post models.Post) (Info, error) {
 		return ExtractInfoFromYoutube(post), nil
 	}
 
-	return Info{}, errors.New("No Service Found For Post")
+	return Info{}, errors.New("No Service Found For Post with URL: " + post.Embed_url)
 }
 
 func IsYoutube(p models.Post) bool {
@@ -41,7 +41,7 @@ func IsYoutube(p models.Post) bool {
 
 func IsSoundcloud(p models.Post) bool {
 
-	if strings.Contains(p.Embed_url, "://soundcloud.com") {
+	if strings.Contains(p.Embed_url, "soundcloud.com") {
 		return true
 	}
 
