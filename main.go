@@ -8,14 +8,14 @@ import (
 
 func main() {
 	longinterval := time.NewTicker(time.Minute).C;
-
-    for {
-        select {
-        case <- longinterval:
-            go importLatestTracks()
-            break
-      }
-    }
+	
+	for {
+ 	    	select {
+   	   		case <- longinterval:
+    	        		go importLatestTracks()
+   	        		break
+   		}
+    	}
 }
 
 func importLatestTracks() {

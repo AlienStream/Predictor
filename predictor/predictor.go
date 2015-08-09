@@ -2,11 +2,17 @@ package predictor
 
 import (
 	"fmt"
+	"strings"
 	db "github.com/AlienStream/Shared-Go/database"
 	models "github.com/AlienStream/Shared-Go/models"
 )
 
 func ImportFromPost(p models.Post) {
+	//broken edge cases
+	if strings.Contains(p.Embed_url, "/groups/") && IsSoundcloud(p) {
+		return
+	}
+	
 	fmt.Printf("Importing Post %s \n", p.Title)
 
 	info, e_err := extractInfo(p)

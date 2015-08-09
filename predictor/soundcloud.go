@@ -33,7 +33,6 @@ func SoundCloudoEmbedLookup(uri string) SoundCloudoEmbed {
     decoder := json.NewDecoder(resp.Body)
     decoder.Decode(&oEmbed)
 
-    //fmt.Printf("decoding " + curl_url + " \n ")
     return oEmbed
 }
 
