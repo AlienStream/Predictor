@@ -94,13 +94,20 @@ func ExtractInfoFromYoutube(p models.Post) Info {
 func YoutubeVideoLookup(url string) YoutubeVideo {
 	var root YoutubeRoot
 	var video YoutubeVideo
-	if !strings.Contains(url, "v=") {
+	if !strings.Contains(url, "v=") && !strings.Contains(url, "youtu.be") {
 		return video
 	}
 
 	// get the video ID
-	var v_id string = strings.Split(url, "v=")[1]
+	var v_id string
+	
+	if strings.Contains(url, "youtu.be") {
+		v_id = strings.Split(url, ".be/")[1]
+	} else {
+		v_id = strings.Split(url, "v=")[1]
+	}
 	v_id = strings.Split(v_id, "&")[0]
+
 
 	// setup the request
 	var base_url string = "https://www.googleapis.com/youtube/v3/videos"
