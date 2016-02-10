@@ -1,6 +1,7 @@
 package predictor
 
 import (
+	"fmt"
 	"encoding/json"
 	models "github.com/AlienStream/Shared-Go/models"
 	"net/http"
@@ -94,16 +95,18 @@ func ExtractInfoFromYoutube(p models.Post) Info {
 func YoutubeVideoLookup(url string) YoutubeVideo {
 	var root YoutubeRoot
 	var video YoutubeVideo
-	if !strings.Contains(url, "v=") && !strings.Contains(url, "youtu.be") {
+	if !strings.Contains(url, "v=") && !strings.Contains(url, "://youtu.be") {
 		return video
 	}
 
 	// get the video ID
 	var v_id string
 	
-	if strings.Contains(url, "youtu.be") {
+	if strings.Contains(url, "://youtu.be") {
+		fmt.Print(url)
 		v_id = strings.Split(url, ".be/")[1]
 	} else {
+		fmt.Print(url)
 		v_id = strings.Split(url, "v=")[1]
 	}
 	v_id = strings.Split(v_id, "&")[0]
